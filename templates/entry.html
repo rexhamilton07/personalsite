@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} — Rex Hamilton</title>
+  <!-- Transparent favicon: hides the browser's default placeholder icon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22/%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/" data-blurb="site.name">Rex Hamilton</a></h1>
+    <nav>
+      <a href="/" data-blurb="nav.home">Front Door</a>
+      <a href="/living-room" data-blurb="nav.living-room">Living Room</a>
+      <a href="/writing" aria-current="page" data-blurb="nav.writing">Study</a>
+      <a href="/contact" data-blurb="nav.contact">Mailbox</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="entry" data-entry-id="{{id}}">
+      <p class="entry-back"><a href="/writing">&larr; Writing</a></p>
+      <h2 class="entry-title" data-entry-field="title">{{title}}</h2>
+      <p class="entry-subtitle" data-entry-field="subtitle">{{subtitle}}</p>
+      <time class="entry-date" datetime="{{isoDate}}">{{date}}</time>
+      <div class="entry-body" data-entry-field="body">{{body}}</div>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> <span data-blurb="footer.name">Rex Hamilton</span></p>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+  <script type="module" src="/edit.js"></script>
+</body>
+</html>

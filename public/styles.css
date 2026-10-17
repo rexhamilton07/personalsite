@@ -1,0 +1,354 @@
+/* Computer Modern (the LaTeX typeface), self-hosted from cm-web-fonts (SIL OFL) */
+@font-face {
+  font-family: 'Computer Modern Serif';
+  src: url('fonts/cmunrm.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Computer Modern Serif';
+  src: url('fonts/cmunbx.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Computer Modern Serif';
+  src: url('fonts/cmunti.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Computer Modern Serif';
+  src: url('fonts/cmunbi.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Warm off-white: halfway between shreyasiyer.dev's parchment (#f1ede4) and NYT white */
+  --bg: #f8f6f1;
+  --text: #121212;
+  --muted: #6b6b6b;
+  --rule: #e2ded5;
+  --hover: rgba(0, 0, 0, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e0e;
+    --text: #f2f2f2;
+    --muted: #9a9a9a;
+    --rule: #262626;
+    --hover: rgba(255, 255, 255, 0.06);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  font-family: 'Computer Modern Serif', Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-feature-settings: "kern";
+  -webkit-font-smoothing: antialiased;
+  color: var(--text);
+  background: var(--bg);
+
+  /* Pin the footer to the bottom on short pages */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+header { margin-bottom: 4rem; }
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.25rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+nav {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+a {
+  color: var(--text);
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+nav a {
+  color: var(--muted);
+  font-weight: normal;
+}
+nav a:hover,
+nav a[aria-current="page"] { color: var(--text); }
+
+h1 a:hover { text-decoration: none; }
+
+section { margin-bottom: 3.5rem; }
+
+.tabs {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2rem;
+}
+
+[role="tab"] {
+  font-weight: normal;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0.25rem 0 0.5rem;
+  cursor: pointer;
+}
+[role="tab"]:hover { color: var(--text); text-decoration: none; }
+[role="tab"][aria-selected="true"] {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+
+p { margin: 0 0 1rem; }
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Saved blurbs can contain line breaks */
+[data-blurb] { white-space: pre-line; }
+
+/* --- Edit mode --- */
+.editing [data-blurb] {
+  outline: 1px dashed var(--muted);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.editing [data-blurb]:focus {
+  outline-style: solid;
+  outline-color: var(--text);
+}
+
+.edit-toolbar {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  font-size: 0.875rem;
+}
+.edit-status { color: var(--muted); }
+
+.edit-toolbar button,
+.login input {
+  font: inherit;
+  color: var(--text);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+}
+.edit-toolbar button { cursor: pointer; }
+.edit-toolbar button:hover { border-color: var(--text); }
+
+.login {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+}
+.login::backdrop { background: rgba(0, 0, 0, 0.25); }
+.login label { display: block; margin-bottom: 0.5rem; }
+.login input { width: 10rem; letter-spacing: 0.3em; }
+.login-error { min-height: 1.2em; margin: 0.5rem 0 0; color: var(--muted); font-size: 0.875rem; }
+
+/* --- Bookshelf & record player --- */
+.shelf {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 2rem 1.5rem;
+}
+
+/* The shelf sits right under the tabs */
+[role="tabpanel"] > .shelf:first-child { margin-top: 0; }
+
+.shelf-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.shelf-item img,
+.cover-blank {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.6rem;
+}
+[data-shelf="books"] img,
+[data-shelf="books"] .cover-blank { aspect-ratio: 2 / 3; }
+[data-shelf="records"] img,
+[data-shelf="records"] .cover-blank { aspect-ratio: 1; }
+.cover-blank { background: var(--rule); }
+
+.item-title { font-weight: bold; }
+.item-creator { color: var(--muted); }
+
+.editing .shelf [data-field] {
+  outline: 1px dashed var(--muted);
+  outline-offset: 2px;
+}
+.editing .shelf [data-field]:focus { outline: 1px solid var(--text); }
+
+.item-delete {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  font: inherit;
+  line-height: 1;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.item-delete:hover { border-color: var(--text); }
+
+.add-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--muted);
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+.add-item-heading { width: 100%; margin: 0; font-weight: bold; }
+.add-item label { display: flex; align-items: center; gap: 0.4rem; width: 100%; }
+.add-item input:not([type="file"]),
+.add-item button {
+  font: inherit;
+  color: var(--text);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+}
+.add-item input:not([type="file"]) { flex: 1; min-width: 8rem; }
+.add-item button { cursor: pointer; }
+.add-item button:hover { border-color: var(--text); }
+.add-item-error { width: 100%; margin: 0; color: var(--muted); }
+.add-item-error:empty { display: none; }
+
+/* --- Writing --- */
+.entries {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+}
+.entries li {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.entries li:first-child { padding-top: 0; }
+.entries a { font-size: 1.2rem; }
+.entries .entry-subtitle { color: var(--text); }
+.entries time { color: var(--muted); font-size: 0.875rem; margin-top: 0.25rem; }
+.editing .add-item + .entries { margin-top: 2rem; }
+
+.entry-back { font-size: 0.875rem; margin-bottom: 2rem; }
+.entry-back a { font-weight: normal; color: var(--muted); }
+.entry-title { font-size: 1.75rem; line-height: 1.25; margin-bottom: 0.5rem; }
+.entry-subtitle { font-style: italic; color: var(--muted); margin: 0 0 0.75rem; }
+.entry-date { display: block; color: var(--muted); font-size: 0.875rem; margin-bottom: 2.5rem; }
+.entry-body { white-space: pre-wrap; }
+
+.editing [data-entry-field] {
+  outline: 1px dashed var(--muted);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.editing [data-entry-field]:focus { outline: 1px solid var(--text); }
+.editing .entry-body { min-height: 12rem; }
+.editing [data-entry-field]:empty::before { color: var(--muted); }
+.editing .entry-subtitle:empty::before { content: "Subtitle"; }
+.editing .entry-body:empty::before { content: "Start writing…"; }
+
+.entry-delete {
+  margin-top: 3rem;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+.entry-delete:hover { color: var(--text); border-color: var(--text); }
+body:not(.editing) .entry-subtitle:empty { display: none; }
+
+/* --- Contact --- */
+.contact-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: normal;
+}
+.contact-links svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}

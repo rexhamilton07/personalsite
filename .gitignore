@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.env
+
+# Site content (database + uploaded covers) stays local: it includes unpublished drafts
+data/
+
+# Build output, published to the gh-pages branch by `npm run publish`
+dist/

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rex Hamilton</title>
+  <!-- Transparent favicon: hides the browser's default placeholder icon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22/%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/" data-blurb="site.name">Rex Hamilton</a></h1>
+    <nav>
+      <a href="/" aria-current="page" data-blurb="nav.home">Front Door</a>
+      <a href="/living-room" data-blurb="nav.living-room">Living Room</a>
+      <a href="/writing" data-blurb="nav.writing">Study</a>
+      <a href="/contact" data-blurb="nav.contact">Mailbox</a>
+    </nav>
+  </header>
+
+  <main>
+    <p data-blurb="home.bio.1">Hi, I&#39;m Rex. I&#39;m an AI Product Lead at [company], where I work at the intersection of product and engineering, [one line on what you&#39;re building].</p>
+    <p data-blurb="home.bio.2">My background is technical: [degree / school], then [early engineering or technical roles]. I still like being close to the code, and these days most of my work is about [models, evals, agents, etc.].</p>
+    <p data-blurb="home.bio.3">I grew up in the Rockies in Colorado, spent five years in Montreal, and now live in Toronto.</p>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> <span data-blurb="footer.name">Rex Hamilton</span></p>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+  <script type="module" src="/edit.js"></script>
+</body>
+</html>
