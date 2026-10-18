@@ -7,3 +7,6 @@ data/
 
 # Build output, published to the gh-pages branch by `npm run publish`
 dist/
+
+# Local dev notes
+NOTES.md
