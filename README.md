@@ -40,6 +40,9 @@ npm run publish   # builds into dist/ and force-pushes it to the gh-pages branch
 npm run build     # just build into dist/
 ```
 
+Cover photos are published as resized WebP copies (max 800px, cached in
+`data/cache/`); the originals in `data/uploads/` are untouched.
+
 Edit mode isn't included in the published site, and the Writing section is
 held back until `PUBLISH_WRITING` is set to `true` in `build.js`.
 
